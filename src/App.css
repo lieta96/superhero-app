@@ -5,6 +5,7 @@
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
+  position:relative
 }
 .App::before{
   position: absolute;
@@ -41,3 +42,5 @@
     transform: rotate(360deg);
   }
 }
+
+

@@ -1,11 +1,18 @@
-import { Formik, Form, Field, useField,ErrorMessage } from 'formik';
-import React, {useEffect,useState} from 'react'
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, {useEffect,useState,useContext} from 'react'
 import axios from "axios";
 import SuperheroCard from '../superheroCard/SuperheroCard'
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import * as Yup from 'yup';
+import TeamContext from '../context';
+
 
 export default function SearchSuperheros (props) {
+
+  const {addMember } = useContext(TeamContext);
 
   const [superheroResults, setSuperheroResults] =useState([])
   const [allResults,setAllResults]=useState([])
@@ -24,7 +31,7 @@ export default function SearchSuperheros (props) {
 
   const [errorMessageAPI, setErrorMessageAPI]=useState(null)
   function getSuperhero (value){
-    let url=`https://superheroapi.com/api/4895369843807603/search/${value}`
+    let url=`https://superheroapi.com/api.php/4895369843807603/search/${value}`
     axios.get(url).then((response) => {
       if (response.data.results){
         setSuperheroResults(response.data.results);
@@ -35,7 +42,7 @@ export default function SearchSuperheros (props) {
 
   return (
     <>
-      <div className="col-8 mx-auto">
+      <div xs={12} sm={8} className="container mx-3 mx-sm-auto">
           <Formik
           initialValues={{
             newSuperhero: '',
@@ -56,14 +63,22 @@ export default function SearchSuperheros (props) {
             }, 400);
           }}
         >
-          <Form>
-            <label className="d-none" htmlFor="newSuperhero">First Name</label>
-            <Field  name="newSuperhero"type="text" placeholder="Batman" className="form-control form-control-lg"/>
-            <ErrorMessage className="d-block text-light" name="newSuperhero" >
+         
+          <Form> 
+            <Row>
+              <Col xs={12} sm={8}>
+                <label className="d-none" htmlFor="newSuperhero">First Name</label>
+                <Field  name="newSuperhero"type="text" placeholder="Batman" className="form-control form-control-lg mb-3 "/>
+                <ErrorMessage className="d-block text-light" name="newSuperhero" >
               { msg => <h6 className="text-light m-2">{msg}</h6> }
-            </ErrorMessage>
-            <Button className="btn btn-secondary btn-lg m-3" type="submit">Search</Button>
-          </Form>
+              </ErrorMessage>
+              </Col>
+              <Col>
+              <div className="d-grid">
+                <Button size="lg" className="btn btn-secondary mt-xs-3" type="submit">Search</Button>
+                </div>
+              </Col></Row> </Form>
+     
         </Formik>
         <h6 className="text-light m-2">{errorMessageAPI}</h6>
 
@@ -72,6 +87,7 @@ export default function SearchSuperheros (props) {
       <div className="d-flex flex-wrap justify-content-center">
         {allResults}
       </div>
+     
 
 
     </>
