@@ -37,9 +37,6 @@ function Superhero(props){
                     <ListGroup className="list-group-flush">
                     {listPower}
                     </ListGroup>
-                    <ListGroup viewMore className="list-group-flush">
-                        {listAppearence}
-                    </ListGroup>
                 </Card.Body>
             )
         }else setCardAppearence('')
@@ -54,15 +51,6 @@ function Superhero(props){
             <h5 className="mb-2">{power}</h5>
             <ProgressBar now={powerstats[power]==='null'? 0 : powerstats[power]} />
         </ListGroup.Item>)
-    }
-    const listAppearence=[]
-    const appearence=props.superhero.appearance
-    for (const item in appearence) {
-        listAppearence.push(
-            <ListGroup.Item key={item}>
-                <h5 className=" text-capitalize mb-2 d-inline-block">{item}: {
-                item=='height' || item=='weight'? appearence[item][1]: appearence[item]}</h5>
-            </ListGroup.Item>)
     }
     
     return (
