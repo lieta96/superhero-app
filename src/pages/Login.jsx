@@ -32,8 +32,8 @@ export default function Login (){
       }
 
     return (
-        <div className="login d-flex flex-column justify-content-center">
-            <h1 className="text-light is-uppercase mb-5">Login</h1>
+        <div className="login p-2 d-flex flex-column justify-content-center">
+            <h1 className="font-weight-bold text-light is-uppercase mb-5">Login</h1>
             <div className="form-container mx-auto">
                  <Formik
                 initialValues={{
@@ -44,9 +44,12 @@ export default function Login (){
                 email: Yup.string()
                     .email('Invalid email address')
                     .required('Required'),
+                password: Yup.string()
+                    .required('Required'),
                 })}
                 onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
+                    localStorage.setItem('user', values)
                     getAPIToken()
                     setUserLogin(false)
                     setSubmitting(false);
@@ -59,23 +62,26 @@ export default function Login (){
                             <Col sm={3}>
                             <label className="text-left text-light" htmlFor="firstName"><h3>Email</h3></label>   
                             </Col>
-                            <Col>
+                            <Col className="position-relative pb-3">
                                 <Field name="email" placeholder="superhero@getyourteam.com" className="form-control form-control-lg mb-3" type="email" />
-                                <ErrorMessage name="email" />
+                                <ErrorMessage name="email">
+                                    { msg => <h6 className="text-danger position-absolute" style={{ left:0,right:0 }}>{msg}</h6> }
+                                </ErrorMessage>
                             </Col>
-                                         
-                                
-
                         </Row>
-                        <Row>
+                        <Row className="mt-3">
                             <Col sm={3}>
                                 <label className="text-left text-light" htmlFor="firstName"><h3>Password</h3></label>
                             </Col>
-                            <Col>
+                            <Col className="position-relative pb-3">
                                 <Field className="form-control form-control-lg mb-3" type="password" name="password" />
+                                <ErrorMessage name="password">
+                                    { msg => <h6 className="text-danger position-absolute" style={{ left:0,right:0 }}>{msg}</h6> }
+                            </ErrorMessage>
                             </Col>
-                            <Button variant="secondary" size="lg" className="btn  mt-xs-3" type="submit">Login</Button >
-                            
+                            <div className="d-grid">
+                            <Button variant="secondary" size="lg" className="btn" type="submit">Login</Button >
+                            </div>
                         </Row>
                     </Form>
             </Formik>

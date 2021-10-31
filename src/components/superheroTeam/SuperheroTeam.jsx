@@ -31,8 +31,9 @@ export default function SuperheroTeam (){
     const powerArray= team.map(superhero=>checkNullValue(superhero.powerstats.power))
     const combatArray= team.map(superhero=>checkNullValue(superhero.powerstats.combat))
 
-    const heightArray= team.map(superhero=>checkNullValue(parseInt(superhero.appeanrence.height[1])))
-    console.log(heightArray)
+    const heightArray= team.map(superhero=>checkNullValue(parseInt(superhero.appearance.height[1])))
+    const weightArray= team.map(superhero=>checkNullValue(parseInt(superhero.appearance.weight[1])))
+    console.log(weightArray)
 
     let intelligenceTeam = 0;
     let strengthTeam = 0;
@@ -40,7 +41,8 @@ export default function SuperheroTeam (){
     let durabilityTeam = 0
     let powerTeam = 0;
     let combatTeam = 0;
-    
+    let heightTeam=0
+    let weightTeam=0
     
     strengthArray.forEach (function(value){
         strengthTeam += value;
@@ -60,6 +62,12 @@ export default function SuperheroTeam (){
     combatArray.forEach (function(value){
         combatTeam += value;
     });
+    heightArray.forEach (function(value){
+        heightTeam += value;
+    });
+    weightArray.forEach (function(value){
+        weightTeam += value;
+    });
     
     const teamPowerstats={
         intelligence:intelligenceTeam,
@@ -68,6 +76,11 @@ export default function SuperheroTeam (){
         durability:durabilityTeam,
         power:powerTeam,
         combat:combatTeam,
+    }
+
+    const teamAppearance={
+        height: heightTeam,
+        weight:weightTeam
     }
 
     const listPower=[]
@@ -80,8 +93,6 @@ export default function SuperheroTeam (){
     teamPowerStatsValues=teamPowerStatsValues.reverse()
     const highValuePower= teamPowerStatsValues[0]
     const highKeyPower= Object.keys(teamPowerstats).find(key => teamPowerstats[key] === highValuePower);
-
-    
 
     for (const power in teamPowerstats){
         if(power==highKeyPower){
@@ -96,6 +107,21 @@ export default function SuperheroTeam (){
             </ListGroup.Item>
         )    
     }
+
+    const listAppearance=[]
+    for (const appearance in teamAppearance){
+        listAppearance.push(
+            <ListGroup.Item key={appearance}>
+                <h5 className="mb-2">{appearance}:
+                    {team.length>0? parseInt(teamAppearance[appearance]/team.length):
+                    0
+                    }
+                </h5>
+            </ListGroup.Item>
+        )    
+    }
+
+
     const teamGallery=[]
     team.forEach(
         (superhero)=>teamGallery.push(<SuperheroTeamCard superhero={superhero} key={superhero.id}/>))
@@ -113,20 +139,25 @@ export default function SuperheroTeam (){
             <h1 className="text-uppercase text-light my-5">Superheroes Team</h1>
             <Container className="pb-5">
                 <Row className="d-flex mt-3">
-                    <Col xs={12} sm={3} className="auto px-5 px-sm-0">
+                    <Col xs={12} sm={4} md={3}className="auto px-5 px-sm-0">
                         <ListGroup>
                             <ListGroupItem><h4 className="mb-2">Power</h4></ListGroupItem>
-                                <ListGroup.Item key={highKeyPower}>
-                                    <h5 className="mb-2">{highKeyPower}:
-                                        {team.length>0? parseInt(teamPowerstats[highKeyPower]/team.length):
-                                        0
-                                        }
-                                    </h5>
-                                </ListGroup.Item>
-                                {listPower}
-                        </ListGroup>   
+                            <ListGroup.Item key={highKeyPower}>
+                                <h5 className="mb-2">{highKeyPower}:
+                                    {team.length>0? parseInt(teamPowerstats[highKeyPower]/team.length):
+                                    0
+                                    }
+                                </h5>
+                                
+                            </ListGroup.Item>
+                            {listPower}
+                        </ListGroup>
+                        <ListGroup>
+                        <ListGroupItem><h4 className="mb-2">Appearance</h4></ListGroupItem>
+                            {listAppearance}
+                        </ListGroup>
                     </Col>
-                    <Col xs={12} sm={9}>
+                    <Col xs={12} sm={8} md={9}>
                         <div className="d-flex flex-wrap justify-content-center">
                             {teamGallery}
                         </div>

@@ -34,6 +34,9 @@ function Superhero(props){
         if (viewMore) {
             setCardAppearence(
                 <Card.Body>
+                    <ListGroup className="list-group-flush">
+                    {listPower}
+                    </ListGroup>
                     <ListGroup viewMore className="list-group-flush">
                         {listAppearence}
                     </ListGroup>
@@ -42,10 +45,6 @@ function Superhero(props){
         }else setCardAppearence('')
         return cardAppearence
     }, [viewMore])
-
-    //mismo código, armar función!
-
-   console.log(props)
 
     const listPower=[]
     const powerstats= props.superhero.powerstats
@@ -78,9 +77,6 @@ function Superhero(props){
                     className="my-1 btn btn-secondary">
                     {inTeam? ("Delete") : ("Add to my team")}
                 </Button>
-                <ListGroup className="list-group-flush">
-                    {listPower}
-                </ListGroup>
                 {cardAppearence}
                 <Button onClick={() => setViewMore(!viewMore)} variant="primary" className="my-1 btn btn-secondary">
                     {viewMore? ("View Less") : ("View More")}
