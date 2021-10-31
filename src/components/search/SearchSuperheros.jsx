@@ -44,7 +44,7 @@ export default function SearchSuperheros (props) {
 
   return (
     <>
-      <div xs={12} sm={8} className="container mx-3 mx-sm-auto">
+      <div xs={12} sm={8} className="container mx-sm-auto">
           <Formik
           initialValues={{
             newSuperhero: '',
@@ -67,19 +67,22 @@ export default function SearchSuperheros (props) {
         >
          
           <Form> 
-            <Row>
-              <Col xs={12} sm={8}>
+            <Row className="justify-content-md-center">
+              <Col xs={12} sm={8} md={6}>
                 <label className="d-none" htmlFor="newSuperhero">First Name</label>
                 <Field  name="newSuperhero"type="text" placeholder="Batman" className="form-control form-control-lg mb-3 "/>
                 <ErrorMessage className="d-block text-light" name="newSuperhero" >
               { msg => <h6 className="text-light m-2">{msg}</h6> }
               </ErrorMessage>
               </Col>
-              <Col>
+              <Col sm={4} md={3}>
               <div className="d-grid">
                 <Button size="lg" className="btn btn-secondary mt-xs-3" type="submit">Search</Button>
                 </div>
-              </Col></Row> </Form>
+              </Col>
+              
+            </Row> 
+          </Form>
      
         </Formik>
         <h6 className="text-light m-2">{errorMessageAPI}</h6>
