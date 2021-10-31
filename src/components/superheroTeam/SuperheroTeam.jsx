@@ -8,14 +8,14 @@ import Col from 'react-bootstrap/Col';
 
 import SuperheroTeamCard from './SuperheroTeamCards'
 import {useContext,useState,useEffect} from 'react'
-import TeamContext from '../context';
+import TeamContext from '../contextTeam';
 
 import './superheroTeam.css'
 import { ListGroupItem } from 'react-bootstrap';
 
 export default function SuperheroTeam (){
 
-    const { team} = useContext(TeamContext);
+    const {team} = useContext(TeamContext);
 
     function checkNullValue(value){
         if ( value==='null') return 0
@@ -25,12 +25,14 @@ export default function SuperheroTeam (){
     const intelligenceArray= team.map(superhero=>
         checkNullValue(superhero.powerstats.intelligence)    
     )
-
     const strengthArray= team.map(superhero=>checkNullValue(superhero.powerstats.strength))
     const speedArray= team.map(superhero=>checkNullValue(superhero.powerstats.speed))
     const durabilityArray= team.map(superhero=>checkNullValue(superhero.powerstats.durability))
     const powerArray= team.map(superhero=>checkNullValue(superhero.powerstats.power))
     const combatArray= team.map(superhero=>checkNullValue(superhero.powerstats.combat))
+
+    const heightArray= team.map(superhero=>checkNullValue(parseInt(superhero.appeanrence.height[1])))
+    console.log(heightArray)
 
     let intelligenceTeam = 0;
     let strengthTeam = 0;
@@ -69,16 +71,30 @@ export default function SuperheroTeam (){
     }
 
     const listPower=[]
+    //Ordenamos de mayor a menor los valores de cada poder
+    let teamPowerStatsValues=Object.values(teamPowerstats) 
+    teamPowerStatsValues=teamPowerStatsValues.sort(function(a, b) {
+        return a - b;
+      }
+    )
+    teamPowerStatsValues=teamPowerStatsValues.reverse()
+    const highValuePower= teamPowerStatsValues[0]
+    const highKeyPower= Object.keys(teamPowerstats).find(key => teamPowerstats[key] === highValuePower);
+
+    
+
     for (const power in teamPowerstats){
+        if(power==highKeyPower){
+        }else
         listPower.push(
-        <ListGroup.Item key={power}>
-            <h5 className="mb-2">{power}:
-                {team.length>0? parseInt(teamPowerstats[power]/team.length):
-                0
-                }
-            </h5>
-        </ListGroup.Item>
-        )
+            <ListGroup.Item key={power}>
+                <h5 className="mb-2">{power}:
+                    {team.length>0? parseInt(teamPowerstats[power]/team.length):
+                    0
+                    }
+                </h5>
+            </ListGroup.Item>
+        )    
     }
     const teamGallery=[]
     team.forEach(
@@ -100,7 +116,14 @@ export default function SuperheroTeam (){
                     <Col xs={12} sm={3} className="auto px-5 px-sm-0">
                         <ListGroup>
                             <ListGroupItem><h4 className="mb-2">Power</h4></ListGroupItem>
-                            {listPower}
+                                <ListGroup.Item key={highKeyPower}>
+                                    <h5 className="mb-2">{highKeyPower}:
+                                        {team.length>0? parseInt(teamPowerstats[highKeyPower]/team.length):
+                                        0
+                                        }
+                                    </h5>
+                                </ListGroup.Item>
+                                {listPower}
                         </ListGroup>   
                     </Col>
                     <Col xs={12} sm={9}>

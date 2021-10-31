@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
-import TeamContext from '../context';
+import TeamContext from '../contextTeam';
 import {useContext} from 'react'
 
 
@@ -45,7 +45,7 @@ function Superhero(props){
 
     //mismo código, armar función!
 
-   console.log(props.superhero.name,props.superhero.biography.alignment)
+   console.log(props)
 
     const listPower=[]
     const powerstats= props.superhero.powerstats
@@ -61,7 +61,8 @@ function Superhero(props){
     for (const item in appearence) {
         listAppearence.push(
             <ListGroup.Item key={item}>
-                <h5 className=" text-capitalize mb-2 d-inline-block">{item}: {appearence[item]}</h5>
+                <h5 className=" text-capitalize mb-2 d-inline-block">{item}: {
+                item=='height' || item=='weight'? appearence[item][1]: appearence[item]}</h5>
             </ListGroup.Item>)
     }
     

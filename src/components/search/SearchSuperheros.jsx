@@ -5,9 +5,8 @@ import SuperheroCard from '../superheroCard/SuperheroCard'
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
 import * as Yup from 'yup';
-import TeamContext from '../context';
+import TeamContext from '../contextTeam';
 
 
 export default function SearchSuperheros (props) {
@@ -31,6 +30,9 @@ export default function SearchSuperheros (props) {
 
   const [errorMessageAPI, setErrorMessageAPI]=useState(null)
   function getSuperhero (value){
+    let token= localStorage.getItem('token')
+    // deberia usar el token dentro del url pero no me da acceso a la api, no veo el error
+    //let url=`https://superheroapi.com/api.php/${token}/search/${value}`
     let url=`https://superheroapi.com/api.php/4895369843807603/search/${value}`
     axios.get(url).then((response) => {
       if (response.data.results){

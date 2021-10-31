@@ -1,5 +1,5 @@
 import React, {useEffect,useState,useContext} from 'react'
-import TeamContext from '../context';
+import TeamContext from '../contextTeam';
 
 //Boostrap imports
 import Card from 'react-bootstrap/Card';
