@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/superhero-app/static/css/main.5130dc73.chunk.css",
-    "main.js": "/superhero-app/static/js/main.3e288591.chunk.js",
-    "main.js.map": "/superhero-app/static/js/main.3e288591.chunk.js.map",
+    "main.js": "/superhero-app/static/js/main.50271efa.chunk.js",
+    "main.js.map": "/superhero-app/static/js/main.50271efa.chunk.js.map",
     "runtime-main.js": "/superhero-app/static/js/runtime-main.b69b82a6.js",
     "runtime-main.js.map": "/superhero-app/static/js/runtime-main.b69b82a6.js.map",
     "static/css/2.c1256375.chunk.css": "/superhero-app/static/css/2.c1256375.chunk.css",
-    "static/js/2.2da681a9.chunk.js": "/superhero-app/static/js/2.2da681a9.chunk.js",
-    "static/js/2.2da681a9.chunk.js.map": "/superhero-app/static/js/2.2da681a9.chunk.js.map",
+    "static/js/2.a1175e5f.chunk.js": "/superhero-app/static/js/2.a1175e5f.chunk.js",
+    "static/js/2.a1175e5f.chunk.js.map": "/superhero-app/static/js/2.a1175e5f.chunk.js.map",
     "static/js/3.1cb6ddc0.chunk.js": "/superhero-app/static/js/3.1cb6ddc0.chunk.js",
     "static/js/3.1cb6ddc0.chunk.js.map": "/superhero-app/static/js/3.1cb6ddc0.chunk.js.map",
     "index.html": "/superhero-app/index.html",
     "static/css/2.c1256375.chunk.css.map": "/superhero-app/static/css/2.c1256375.chunk.css.map",
     "static/css/main.5130dc73.chunk.css.map": "/superhero-app/static/css/main.5130dc73.chunk.css.map",
-    "static/js/2.2da681a9.chunk.js.LICENSE.txt": "/superhero-app/static/js/2.2da681a9.chunk.js.LICENSE.txt",
+    "static/js/2.a1175e5f.chunk.js.LICENSE.txt": "/superhero-app/static/js/2.a1175e5f.chunk.js.LICENSE.txt",
     "static/media/style.css": "/superhero-app/static/media/city-stars.d98a7a46.png",
     "static/media/superhero_1.ca33eab8.svg": "/superhero-app/static/media/superhero_1.ca33eab8.svg",
     "static/media/superhero_2.e34e8d42.svg": "/superhero-app/static/media/superhero_2.e34e8d42.svg",
@@ -23,8 +23,8 @@
   "entrypoints": [
     "static/js/runtime-main.b69b82a6.js",
     "static/css/2.c1256375.chunk.css",
-    "static/js/2.2da681a9.chunk.js",
+    "static/js/2.a1175e5f.chunk.js",
     "static/css/main.5130dc73.chunk.css",
-    "static/js/main.3e288591.chunk.js"
+    "static/js/main.50271efa.chunk.js"
   ]
 }
