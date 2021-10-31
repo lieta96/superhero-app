@@ -79,7 +79,7 @@ export default function Login (){
                                     { msg => <h6 className="text-danger position-absolute" style={{ left:0,right:0 }}>{msg}</h6> }
                             </ErrorMessage>
                             </Col>
-                            <div className="d-grid">
+                            <div className="d-grid mt-3">
                             <Button variant="secondary" size="lg" className="btn" type="submit">Login</Button >
                             </div>
                         </Row>
