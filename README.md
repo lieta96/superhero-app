@@ -8,6 +8,10 @@ El proyecto aún sigue en desarrollo, hay varios ajustes que veo pendientes. Cua
 ## Desarrollo
 La aplicación está desarrollada en React, para la misma hago uso de reacthooks, en particular el poryecto me permitió aprender useContext para manejar estados globales.
 
+## Armá tu equipo de superhéroes
+
+La demo en vivo puede verse <a href="https://lieta96.github.io/superhero-app/" target="_blank">acá</a> :rocket:
+
 ## Para corrrer el proyecto
 <ul>
 <li>npm install</li>
