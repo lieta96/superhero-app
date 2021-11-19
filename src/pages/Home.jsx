@@ -1,14 +1,16 @@
-import './style.css';
 import React, {useState} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchSuperheroes from '../components/search/SearchSuperheros'
-import Button from 'react-bootstrap/Button';
 import SuperheroTeam from '../components/superheroTeam/SuperheroTeam'
 import Header from '../components/Header'
-import TeamContext from '../components/contextTeam';
-import { array } from 'yup/lib/locale';
-import SuperheroTeamCards from '../components/superheroTeam/SuperheroTeamCards';
 import Footer from '../components/footer/Footer'
+import './style.css';
+
+//Context 
+import TeamContext from '../components/contextTeam';
+
+//Boostrap 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 
 
 export default function Home() {
@@ -34,7 +36,6 @@ export default function Home() {
     if(team.includes(superhero)) setCompleteMessage('You already have this superhero in you team')
     else return superhero 
   }
-
 
   function addMember(newSuperhero){
     
@@ -67,6 +68,7 @@ export default function Home() {
     setViewTem(!viewTeam)
     setCompleteMessage('')
   }
+
   return (
     <div className="App pb-5">
 

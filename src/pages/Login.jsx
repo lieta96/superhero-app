@@ -8,12 +8,9 @@ import Col from 'react-bootstrap/Col';
 import Footer from '../components/footer/Footer'
 import UserLoginContext from '../components/contextTeam';
 
-
-
 export default function Login (){
     
     const {setUserLogin } = useContext(UserLoginContext);
-
 
     function getAPIToken (){
         let url=`http://challenge-react.alkemy.org/`
@@ -31,32 +28,35 @@ export default function Login (){
         })
       }
 
+      function showErrorMessage(msg){
+         return <h6 className="text-danger position-absolute" style={{ left:0,right:0 }}>{msg}</h6>
+      }
+
     return (
         <div className="login p-2 d-flex flex-column justify-content-center">
             <h1 className="font-weight-bold text-light is-uppercase mb-5">Login</h1>
             <div className="form-container mx-auto">
                  <Formik
-                initialValues={{
-                email: '',
-                password:''
-                }}
-                validationSchema={Yup.object({
-                email: Yup.string()
-                    .email('Invalid email address')
-                    .required('Required'),
-                password: Yup.string()
-                    .required('Required'),
-                })}
-                onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    localStorage.setItem('user', values)
-                    getAPIToken()
-                    setUserLogin(false)
-                    setSubmitting(false);
-                    
-                }, 400);
-                }}
-            >
+                    initialValues={{
+                    email: '',
+                    password:''
+                    }}
+                    validationSchema={Yup.object({
+                    email: Yup.string()
+                        .email('Invalid email address')
+                        .required('Required'),
+                    password: Yup.string()
+                        .required('Required'),
+                    })}
+                    onSubmit={(values, { setSubmitting }) => {
+                    setTimeout(() => {
+                        localStorage.setItem('user', values)
+                        getAPIToken()
+                        setUserLogin(false)
+                        setSubmitting(false);    
+                    }, 400);
+                    }}
+                >
                     <Form>
                         <Row>
                             <Col sm={3}>
@@ -65,7 +65,7 @@ export default function Login (){
                             <Col className="position-relative pb-3">
                                 <Field name="email" placeholder="superhero@getyourteam.com" className="form-control form-control-lg mb-3" type="email" />
                                 <ErrorMessage name="email">
-                                    { msg => <h6 className="text-danger position-absolute" style={{ left:0,right:0 }}>{msg}</h6> }
+                                    { msg => showErrorMessage(msg) }
                                 </ErrorMessage>
                             </Col>
                         </Row>
@@ -76,17 +76,17 @@ export default function Login (){
                             <Col className="position-relative pb-3">
                                 <Field className="form-control form-control-lg mb-3" type="password" name="password" />
                                 <ErrorMessage name="password">
-                                    { msg => <h6 className="text-danger position-absolute" style={{ left:0,right:0 }}>{msg}</h6> }
-                            </ErrorMessage>
+                                    {msg=>showErrorMessage(msg)}
+                                </ErrorMessage>
                             </Col>
                             <div className="d-grid mt-3">
                             <Button variant="secondary" size="lg" className="btn" type="submit">Login</Button >
                             </div>
                         </Row>
                     </Form>
-            </Formik>
+                </Formik>
             </div>
-           <Footer/>
+            <Footer/>
         </div>
     )
 }
